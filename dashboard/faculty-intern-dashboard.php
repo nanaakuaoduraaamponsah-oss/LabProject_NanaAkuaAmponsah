@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// Authorization check - only faculty_intern can access
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'faculty_intern') {
     header('Location: ../index.php?error=' . urlencode('Unauthorized access. Please login as faculty intern.'));
     exit();
@@ -36,6 +37,7 @@ $lastName = $_SESSION['last_name'];
 </header>
 
 <main class="dashboard-content">
+    <!-- Assigned Courses -->
     <section id="assigned-courses">
         <h2>My Assigned Courses</h2>
         <div id="assignedCoursesList">
@@ -43,6 +45,7 @@ $lastName = $_SESSION['last_name'];
         </div>
     </section>
 
+    <!-- Attendance Sessions -->
     <section id="attendance-sessions">
         <h2>Attendance Sessions</h2>
         <button id="createSessionBtn" style="background-color: #4caf50; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: 600; margin-bottom: 15px;">
@@ -54,27 +57,28 @@ $lastName = $_SESSION['last_name'];
     </section>
 </main>
 
+<!-- Create Session Modal -->
 <div id="createSessionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
     <div style="background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 500px;">
-        <h2 style="margin-top: 0; color: #4caf50;">Create Attendance Session</h2>
+        <h2 style="margin-top: 0; color: #0066cc;">Create Attendance Session</h2>
         <form id="createSessionForm">
             <label style="display: block; margin-bottom: 5px; font-weight: 600;">Select Course</label>
-            <select id="sessionCourse" name="course_id" required 
+            <select id="sessionCourse" name="course_id" required
                     style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
                 <option value="">Loading courses...</option>
             </select>
             
             <label style="display: block; margin-bottom: 5px; font-weight: 600;">Session Name</label>
-            <input type="text" id="sessionName" name="session_name" placeholder="e.g., Week 1 - Introduction" required 
+            <input type="text" id="sessionName" name="session_name" placeholder="e.g., Week 1 - Introduction" required
                 style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
             
             <label style="display: block; margin-bottom: 5px; font-weight: 600;">Session Date</label>
-            <input type="date" id="sessionDate" name="session_date" required 
+            <input type="date" id="sessionDate" name="session_date" required
                 style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
             
             <div style="display: flex; gap: 10px; justify-content: flex-end;">
                 <button type="button" id="cancelSessionBtn" style="padding: 10px 20px; background: #ccc; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
-                <button type="submit" style="padding: 10px 20px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Create Session</button>
+                <button type="submit" style="padding: 10px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Create Session</button>
             </div>
         </form>
     </div>

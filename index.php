@@ -18,10 +18,8 @@ if (isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN PAGE</title>
     <link rel="icon" href="images/calendar.png" type="image/png">
-    <link rel="background" href="images/Ashesi_Admissions_Banner_2.jpg">
     <link rel="stylesheet" href="css/login.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/ajax-handler.js" defer></script>
     <script src="js/validation.js" defer></script>
 </head>
 
